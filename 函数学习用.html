@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // // 用年月日，判断这一天是那年的第几天
+    // function getday(year,month,day) {
+    //     var num_day = 0;
+    //     // 先判断年是平年还是闰年
+    //     var month2 = 28;
+    //     if ((year%4===0 && year%100!==0) || (year%400===0)) {
+    //         month2 = 29;
+    //     }
+    //     for (var i = 1;i<=month;i++) {
+    //         if (i==month){
+    //             num_day+=day;
+    //             // 如果循环到当前月份是就加上变量day
+    //         }else if (i===2) {
+    //             num_day+=month2;
+    //         }else if (i%2===0 && i<8 && i!==2) {
+    //             num_day+=30;
+    //         }else if (i%2===0 && i>8) {
+    //             num_day+=31;
+    //         }else if (i%2!==0 && i<8 && i!==2) {
+    //             num_day+=31;
+    //         }else if (i%2!==0 && i>8) {
+    //             num_day+=30;
+    //         };
+    //     };
+    //     return num_day;
+    // };
+    // console.log(getday(2000,3,1));
+    var num1 = 10;
+    fun();
+    function fun(){
+        console.log(num1);
+        var num1 = 20;
+    };
+    </script>
+</body>
+</html>
