@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    // var time =new Date();
+    // console.log(time.getTime());
+    //获取当前标准时间
+
+    // var now = Date.now(); H5新增 存在兼容性问题
+    // console.log(now);
+
+    // var time =new Date();
+    // console.log(time.valueOf())
+
+    // var time =new Date();
+    // console.log(time.getTime())
+
+    // var time =+ new Date();
+    // console.log(time);
+    // 获取当前时间的毫秒值
+
+    // var time =new Date();
+    // console.log(time.toLocaleDateString());
+    // console.log(time.toLocaleTimeString());
+    //不同的浏览器有把不同的效果
+    //Locale意为本地化 根据操作系统的语言为判断标准
+
+
+    var d = new Date(1990,5,5);
+    var year = d.getFullYear();
+    var month = d.getMonth()+1;
+    var date = d.getDate();
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var seconds = d.getSeconds();
+
+    month = month < 10 ? "0"+month : month;
+    date =  date < 10 ? "0"+date : date;
+    hours = hours < 10 ? "0"+hours : hours;
+    minutes = minutes < 10 ? "0"+minutes : minutes;
+    seconds = seconds < 10 ? "0"+seconds : seconds;
+    console.log(year + "年" + month+"月"+date+"日"+hours+":"+minutes+":"+seconds)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
