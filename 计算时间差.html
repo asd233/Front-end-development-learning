@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    function fn(){
+    //1.先算出相差多少毫秒
+    var d1 = new Date();
+    var d2 = new Date(2019,12,1);
+    var differ = d2-d1;
+    console.log(differ);
+    //算出相差的年月日时分秒
+    var seconds = Math.round(differ/1000%60);
+    var minutes = Math.round(differ/1000/60%60);
+    var hours = Math.round(differ/1000/60/60%24);
+    var day = Math.round(differ/1000/60/60/24);
+    //返回差值
+    return {
+        day:day,
+        hours:hours,
+        minutes:minutes,
+        seconds:seconds
+    }
+    };
+    console.log(fn());
+    //由于月份是从0开始计算，所以天数要减去一个月
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
