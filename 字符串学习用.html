@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+    //获取"中华"
+    // var str = "我爱中华人民共和国";
+    // var str2 = str.substr(2,2);
+    // console.log(str2);
+
+    //将"o"替换为"!"
+    // var s = "abcoefoxyzzopp";
+    // var index = -1;
+    // do{
+    //     index = s.indexOf("o",index+1);
+    //     if(index !== -1){
+    //         s = s.replace("o", "!");
+    //     }
+    // }while(index !==-1);
+    // console.log(s);
+
+    var url = "http://www.bilibili.com/login?name=zs&age=18&a=1&b=2"; 
+    function geturl(url){
+        var index = url.indexOf("?");
+        //获取第一个问号的位置
+        var wh = url.substr(index +1);
+        //获取问号之后的字符串
+        var o = {};
+        //创建一个对象
+	    for(var i = 0;i<wh.length;i++){
+        if(wh.charAt(i) == "="){
+            if(wh.indexOf("&") !== -1){
+            //判断是否是最后一个属性
+            var weizhi = wh.indexOf("&");
+            var ss = wh.substring(0,i);
+            //截取属性
+            var sss = wh.substring(i+1,weizhi);
+            //截取属性值
+            var wh = wh.substring(weizhi+1);
+            //将还未使用的字符串截取出来
+            o[ss] = sss;
+            i = 0;
+            }else{
+                var ss = wh.substring(0,i);
+            //属性
+            var sss = wh.substring(i+1);
+            //属性值
+            o[ss] = sss;
+            }
+        }
+        }
+        return o;
+        //这个太麻烦了，有更好的办法
+    }
+    console.log(geturl(url));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
