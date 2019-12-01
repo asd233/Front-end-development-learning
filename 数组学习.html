@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //数组sort方法(在不向sort方法传入参数的情况下)是将字符串的各个字符按照Unicode位点进行排序，若是数字则先转换成字符串再按照Unicode位点进行排序
+        // var arr = [1, 2, 5, 9, 96, 80, 456]
+        // arr.sort(
+        //       function (a,b){
+        //       return b-a;
+        //     }
+        // );
+        // console.log(arr);
+
+        // var arr = ["adsd", "asdasdf", "rggdfsbvb", "atty"];
+        // arr.sort(function (a, b) {
+        //     return a.length - b.length;
+        // });
+        // console.log(arr);
+
+        // var arr =["fgf","fghd","dcfh","jkl",79]
+        // function fn(){
+        //     arr.reverse();
+        //     console.log(arr);
+        // };
+
+        // fn();
+        // console.log(arr);
+        // // 实现Array数组对象的sort方法
+        // function ps(arr,fun) {
+        //     //判断传入的参数是否是数组对象
+        //     if (!(arr instanceof Array)) {
+        //         console.error("错误:传入的参数不是一个数组");
+        //         return;
+        //     }
+        //     //外层循环 控制比较整个数组的次数
+        //     for (var i = 0; i < arr.length - 1; i++) {
+        //         //内层循环 控制比较的个数
+        //         for (var j = 0; j < arr.length - 1 - i; j++) {
+        //             if (fun(arr[j],arr[j + 1])>0) {
+        //                 var cc = arr[j + 1];
+        //                 arr[j + 1] = arr[j];
+        //                 arr[j] = cc;
+        //             }
+        //         }
+        //     }
+        //     console.log(arr);
+        // }
+        // // var arr = [1, 2, 3, 1, 5];
+        // var arr = ["asd", "awfcasc","wadffaw","s","fs"];
+        // ps(arr, function(a,b){
+        //    return b.length-a.length; 
+        // });
+
+        //实现Array.join()方法
+        // var arr = [1, 2, 3, 1, 5];
+        //     function join(arr,fg){
+        //    //判断fg变量是否是空值
+        //         if(typeof fg != String||Number||Boolean||undefined||null|NaN){
+        //             fg = ",";
+        //         }
+        //         var arrx =arr[0];
+        //         for(var i = 1;i < arr.length;i++){
+        //             arrx+= fg+arr[i];
+        //         }
+        //         return arrx; 
+        //     }
+        //     console.log(join(arr));
+        //     console.log(arr.join())
+
+        // 实现Array.reverse()方法 
+        // var arr = [1, 2, 3, 1, 5];
+        //     function re(arr){
+        //         var pd = Array.isArray(arr);
+        //         if(pd == false){
+        //             console.error("错误,这不是一个数组");
+        //             return "错误,这不是一个数组";
+        //         }
+        //         var cc;
+        //         for(var i = 0;i < arr.length/2;i++){
+        //             //进行交换
+        //             cc = arr[arr.length-i-1];
+        //             arr[arr.length-i-1] = arr[i];
+        //             arr[i] = cc;
+        //         }
+        //         return arr;
+        //     }
+        //     var str = "abc";
+        //     console.log(re(str));
+
+        // arr.filter根据提供的函数进行筛选，并返回一个新数组
+        // var arr = [1500,1200,2000,2100,1800];
+        // var newarr = arr.filter(function (item){
+        //     return item<2000;
+        // })
+        // console.log(newarr);
+
+        //原生实现Array.filter方法
+        // var arr = "asdff";
+        // function shaixuan(arr,fun){
+        //     if(!(arr.isArray)){
+        //         console.error("错误，传入的不是一个数组");
+        //         return;
+        //     }
+        //     var arrx = [];
+        //     var j = 0;
+        //     for(var i=0; i<arr.length;i++){
+        //         if(fun(arr[i])){
+        //             arrx[j] = arr[i];
+        //             j++;
+        //         }
+        //     }
+        //     return arrx;
+        // }
+
+        // console.log(shaixuan(arr,function (item){
+        //     return item<2000;
+        // }))
+
+        // 找到参数在数组中第一次出现位置，并返回索引值
+        // var arr = ["c","a","z","a","x","a"];
+        // // 从前往后找
+        // console.log(arr.indexOf("a"));
+        // //从后往前找
+        // console.log(arr.lastIndexOf("a"));
+        
+
+        //数组去重
+        var arr = ["c", "a", "z", "a", "x", "a", "a"];
+        var arrx = [];
+        var k = 0;
+        for (var i = 0; i < arr.length; i++) {
+            //外层for选择arr数组
+            var pd = true;
+            for (var j = -1;j < arrx.length;j++) {
+                //内层for控制arr与每个arrx对比
+                if(arr[i] == arrx[j+1]){
+                    pd = false;
+                    break;
+                }
+            }
+            if(pd == true){
+                arrx[k] = arr[i];
+                k++;
+            }
+        }
+        console.log(arr);
+        console.log(arrx);
+
+
+        //打印1到100的二维数组
+        //两层循环
+		var num = 1;//需要插入的数字，每插入一次就自增1
+		var array = [];
+		for (var i = 0; i < 10; i++) {
+			array[i] = [];
+			for (var j = 0; j <10; j++) {
+				array[i][j] = num;
+				num++;
+			}
+		}
+		console.log(array);
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
