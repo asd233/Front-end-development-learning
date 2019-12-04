@@ -10,16 +10,17 @@
     <script>
     var ID_Number = parseInt(prompt("请输入身份证号"));
     //判断身份证号有没有错误
-    if(ID_Number/100000000000000000>4){
+    if(ID_Number/100000000000000000>1){
         //获取出生日期
         var Date_of_birth = Math.floor((ID_Number/1000000000000 - Math.floor(ID_Number/1000000000000))*100000000);
         Judge_Date(Date_of_birth);
-    }else if(ID_Number/10000000000000000>4){
+    }else if(ID_Number/10000000000000000>1){
         //获取身份证尾号为x的出生日期
         var Date_of_birth = Math.floor((ID_Number/100000000000 - Math.floor(ID_Number/100000000000))*100000000);
         Judge_Date(Date_of_birth);
     }else{
-        alert("您输入的身份证号有误");    
+        alert("您输入的身份证号有误");
+        
     }
     function Judge_Date(Date_of_birth){
     //获取年月日
@@ -27,7 +28,10 @@
     var month = Math.floor((Date_of_birth/10000 - Math.floor(Date_of_birth/10000))*100);
     var day = Math.ceil((Date_of_birth/100 - Math.floor(Date_of_birth/100))*100);
     var date = new Date();
-    if(date.getFullYear() - year > 18 || (date.getFullYear() - year == 18 && date.getMonth()+1 >= month && date.getDate() >= day)){
+    var NowYear = date.getFullYear();
+    var NowMonth = date.getMonth()+1;
+    var NowDay = date.getTime();
+    if(NowYear - year > 18 || NowYear - year == 18 && NowMonth > month || NowYear - year == 18 && NowMonth == month && NowDay>= day){
         alert("你已成年");
     }else{
         alert("你尚未成年");
