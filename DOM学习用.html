@@ -7,7 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="a1">1</div>
+    <!-- <div id="a1">1</div> -->
+    <input type="text"><br/>
+    <input type="text"><br/>
+    <input type="text"><br/>
+    <input type="text"><br/>
+    <input type="text"><br/>
+    <input type="text"><br/>
+    <input type="text"><br/>
+    <input type="text"><br/>
+    <input type="text"><br/>
     <script>
         // var div = document.getElementById("a1");
         // console.log(typeof div);//object
@@ -16,13 +25,21 @@
         //可以使用选择器，但只能选择一个元素
         //document.querySelectorAll() 可以选择多个元素
         //  console.log(div);
-        var num = prompt("输入");
-        switch(true){
-            case num >=5:alert("大于");break;
-            case num <5:alert("小于");break;
+        // var num = prompt("输入");
+        // switch(true){
+        //     case num >=5:alert("大于");break;
+        //     case num <5:alert("小于");break;
             
+        // }
+        var str = "";
+        var input_value = document.getElementsByTagName("input");
+        for(var i = 0;i < input_value.length;i++){
+            input_value[i].value = 123;
+            str += input_value[i].value;
+            str += "|";
         }
-        
+        console.log(str);
+
     </script>
 </body>
 </html>
