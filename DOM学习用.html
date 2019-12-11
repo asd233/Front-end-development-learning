@@ -29,8 +29,8 @@
         // switch(true){
         //     case num >=5:alert("大于");break;
         //     case num <5:alert("小于");break;
-            
         // }
+
         var str = "";
         var input_value = document.getElementsByTagName("input");
         for(var i = 0;i < input_value.length;i++){
@@ -38,6 +38,7 @@
             str += input_value[i].value;
             str += "|";
         }
+        str = str.substr(0,str.length-1);
         console.log(str);
 
     </script>
