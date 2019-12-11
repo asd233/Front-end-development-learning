@@ -9,22 +9,76 @@
 <body>
     <script>
     //在控制台输出正方形
-    var str = "";
-    for(var i = 0;i<5;i++){//行
-        for(var j = 0;j<5;j++){//列
-            str += "* ";
-        }
-        str +="\n";
-    }
-    console.log(str);
+    // var str = "";
+    // for(var i = 0;i<5;i++){//行
+    //     for(var j = 0;j<5;j++){//列
+    //         str += "* ";
+    //     }
+    //     str +="\n";
+    // }
+    // console.log(str);
 
-    //输出九九乘法表
-    for(var i = 1;i<10;i++){//行
-        for(var j = 1;j<=i;j++){//列
-        document.write(i+"x"+j+"="+i*j+" &nbsp&nbsp");
+    // var p = prompt("请输入行数")
+    // for(var j = 0;j<p;j++){
+    // // 用空格输出一个倒三角
+    //     for(var i = 0;i<p-j;i++){
+    //         document.write("&nbsp");
+    //     }
+    // // 输出星号
+    //     for(var k = 1;k<=2*j+1; k++){
+    //     document.write("*");
+    //     }
+    // //换行
+    //     document.write("<br/>");
+    // }
+
+
+    // var p = prompt("请输入行数")
+    // for(var j = 0;j<p;j++){
+    // // 用空格输出一个倒三角
+    //     for(var i = 0;i<p-j;i++){
+    //         document.write("&nbsp");
+    //     }
+    //     for(var k = 1;k<=2*j+1; k++){
+    //     //进行判断如果是一行中的开头和结尾则输出星号，否则输出空格
+    //     if(k == 1||k==2*j+1){
+    //     document.write("*");
+    //     }else{
+    //         document.write("&nbsp")
+    //     }
+    //     }
+    //     // 换行
+    //     document.write("<br/>");
+    // //换行
+    // }
+
+    //     *
+    //    ***
+    //   *****
+    //  *******
+
+    // for(var i = 1;i<=9;i++){
+    //     for(var j = 1;j<=i;j++){
+    //         document.write(j+"x"+i+"="+i*j);
+    //         document.write("&nbsp");
+    //     }
+    //     document.write("<br/>")
+    // }
+
+    // var bj = 10000;
+    // for(var i = 0;i<5;i++){
+    //     bj += 10000*0.003;
+    // }
+    // document.write(bj);
+    var arr = [];
+    for(var i = 0;i<12;i++){
+        if(i<2){
+            arr[i] = 1;
+        }else{
+        arr[i] = arr[i-1] +arr[i-2];
         }
-        document.write("<br/>");
     }
+    document.write(arr);
 
 
     </script>
