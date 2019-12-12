@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    .wn{
+        background-color: rgba(255, 0, 0, 0.5)
+    }
+    </style>
 </head>
 <body>
     <!-- <div id="a1">1</div> -->
+    <!-- <input type="text"><br/>
     <input type="text"><br/>
     <input type="text"><br/>
     <input type="text"><br/>
@@ -15,8 +21,10 @@
     <input type="text"><br/>
     <input type="text"><br/>
     <input type="text"><br/>
-    <input type="text"><br/>
-    <input type="text"><br/>
+    <input type="text"><br/> -->
+    <input type="text" id="UserName" >
+    <input type="text" id="UserPassWord">
+    <input type="button" value="登陆" id="dl">
     <script>
         // var div = document.getElementById("a1");
         // console.log(typeof div);//object
@@ -31,16 +39,29 @@
         //     case num <5:alert("小于");break;
         // }
 
-        var str = "";
-        var input_value = document.getElementsByTagName("input");
-        for(var i = 0;i < input_value.length;i++){
-            input_value[i].value = 123;
-            str += input_value[i].value;
-            str += "|";
-        }
-        str = str.substr(0,str.length-1);
-        console.log(str);
+        // 获取input中的字符并每个间隔一个"|"输出
+        // var str = "";
+        // var input_value = document.getElementsByTagName("input");
+        // for(var i = 0;i < input_value.length;i++){
+        //     input_value[i].value = 123;
+        //     str += input_value[i].value;
+        //     str += "|";
+        // }
+        // str = str.substr(0,str.length-1);
+        // console.log(str);
 
+        //判断输入的用户名与密码是否符合规则
+        var button = document.getElementById("dl");
+        button.onclick = function dl(){
+            var un = document.getElementById("UserName");
+            var pw = document.getElementById("UserPassWord");
+            if(un.value.length>6||un.value.length<3){
+                un.className = "wn";
+            }
+            if(pw.value.length>8||pw.value.length<6){
+                pw.className = "wn"
+            }
+        };
     </script>
 </body>
 </html>
