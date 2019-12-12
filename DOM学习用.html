@@ -57,9 +57,13 @@
             var pw = document.getElementById("UserPassWord");
             if(un.value.length>6||un.value.length<3){
                 un.className = "wn";
+            }else{
+                un.className = "";
             }
             if(pw.value.length>8||pw.value.length<6){
-                pw.className = "wn"
+                pw.className = "wn";
+            }else{
+                pw.className  = "ps";
             }
         };
     </script>
