@@ -1,16 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    .wn{
-        background-color: rgba(255, 0, 0, 0.5)
-    }
+        /* .wn {
+            background-color: rgba(255, 0, 0, 0.5)
+        } */
+
+        .biaoti {
+            background-color: antiquewhite;
+            width: 700px;
+            height: 20px;
+        }
+
+        table {
+            width: 300px;
+            height: 100px;
+            border: 1px solid #a5a5a5;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .sp {
+            background-color: rgb(243, 243, 243);
+        }
+
+        .sp:hover {
+            background-color: rgb(255, 255, 255);
+        }
+
+        td {
+            border: 1px solid #a5a5a5;
+        }
+
+        tr :first-child {
+            width: 50px;
+        }
     </style>
 </head>
+
 <body>
     <!-- <div id="a1">1</div> -->
     <!-- <input type="text"><br/>
@@ -22,12 +54,42 @@
     <input type="text"><br/>
     <input type="text"><br/>
     <input type="text"><br/> -->
-    <input type="text" id="UserName" >
+    <!-- <input type="text" id="UserName" >
     <input type="text" id="UserPassWord">
-    <input type="button" value="登陆" id="dl">
+    <input type="button" value="登陆" id="dl"> -->
+    <table>
+        <tr class="biaoti">
+            <td>全选<input type="checkbox" id="bt-checkbox"></td>
+            <td>商品</td>
+            <td>价钱</td>
+        </tr>
+        <tr class="sp">
+            <td><input type="checkbox"></td>
+            <td>8</td>
+            <td>8000</td>
+            </trsla>
+        <tr class="sp">
+            <td><input type="checkbox"></td>
+            <td>pro</td>
+            <td>5000</td>
+        </tr>
+        <tr class="sp">
+            <td><input type="checkbox"></td>
+            <td>air</td>
+            <td>2000</td>
+        </tr>
+        <tr class="sp">
+            <td><input type="checkbox"></td>
+            <td>watch</td>
+            <td>2000</td>
+        </tr>
+    </table>
+    <input type="button" value="反选" id="fx">
     <script>
         // var div = document.getElementById("a1");
         // console.log(typeof div);//object
+
+        //感觉使用选择器选择元素应该很方便，应该多多使用
 
         //  var div = document.querySelector("#a1");
         //可以使用选择器，但只能选择一个元素
@@ -51,23 +113,80 @@
         // console.log(str);
 
         //判断输入的用户名与密码是否符合规则
-        var button = document.getElementById("dl");
-        button.onclick = function dl(){
-            var un = document.getElementById("UserName");
-            var pw = document.getElementById("UserPassWord");
-            if(un.value.length>6||un.value.length<3){
-                un.className = "wn";
-                return;
-            }else{
-                un.className = "";
+        // var button = document.getElementById("dl");
+        // button.onclick = function dl(){
+        //     var un = document.getElementById("UserName");
+        //     var pw = document.getElementById("UserPassWord");
+        //     if(un.value.length>6||un.value.length<3){
+        //         un.className = "wn";
+        //         return;
+        //     }else{
+        //         un.className = "";
+        //     }
+        //     if(pw.value.length>8||pw.value.length<6){
+        //         pw.className = "wn";
+        //         return;
+        //     }else{
+        //         pw.className  = "ps";
+        //     }
+        // };
+
+
+        var bt = document.getElementById("bt-checkbox");
+        var input_check = document.getElementsByTagName("input");
+        var fx = document.getElementById("fx")
+        bt.onclick = function () {
+            for (var i = 0; i < input_check.length; i++) {
+                input_check[i].checked = bt.checked;
             }
-            if(pw.value.length>8||pw.value.length<6){
-                pw.className = "wn";
-                return;
-            }else{
-                pw.className  = "ps";
+        }
+
+        var pd = false;
+        for (var i = 1; i < input_check.length; i++) {
+            //此循环仅是为了绑定事件
+            input_check[i].onclick = function () {
+                //此处是为了实现勾选全部复选框后，全选框自动勾选
+                for (var i = 1; i < input_check.length - 1; i++) {
+                    if (input_check[i].checked == true) {
+                        pd = true;
+                    } else {
+                        pd = false;
+                        break;
+                    }
+                }
+                if (pd == true) {
+                    bt.checked = pd;
+                }
+                //此处实现全选框自动取消勾选
+                if (this.checked == false) {
+                    bt.checked = false;
+                }
             }
-        };
+        }
+
+        //反选功能
+        fx.onclick = function () {
+            var pd = false;
+            for (var i = 0; i < input_check.length-1; i++) {
+                if (input_check[i].checked == true) {
+                    input_check[i].checked = false;
+                } else {
+                    input_check[i].checked = true;
+                }
+            }
+            for (var i = 1; i < input_check.length - 1; i++) {
+                    if (input_check[i].checked == true) {
+                        pd = true;
+                    } else {
+                        pd = false;
+                        break;
+                    }
+                }
+                if (pd == true) {
+                    bt.checked = pd;
+                }
+        }
     </script>
 </body>
+
 </html>
