@@ -70,15 +70,36 @@
     //     bj += 10000*0.003;
     // }
     // document.write(bj);
+
+    // 斐波那契数列，兔子问题
+    // var arr = [];
+    // for(var i = 0;i<12;i++){
+    //     if(i<2){
+    //         arr[i] = 1;
+    //     }else{
+    //     arr[i] = arr[i-1] +arr[i-2];
+    //     }
+    // }
+    // document.write(arr);
+    
+
+    //生成一个随机数，判断数组中有没有这个数，有则存入。
     var arr = [];
-    for(var i = 0;i<12;i++){
-        if(i<2){
-            arr[i] = 1;
-        }else{
-        arr[i] = arr[i-1] +arr[i-2];
+    function n1(){
+    var k = 0;
+    var j = false;
+    var num = Math.ceil(Math.random()*100);
+    for(var i = 0;i<arr.length;i++){
+        if(arr[i] === num){
+            j = true;
         }
     }
-    document.write(arr);
+    if(j == false){
+        arr[arr.length] = num;
+    }
+    console.log(arr);
+}
+    setInterval("n1()", 100);
 
 
     </script>
