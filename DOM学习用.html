@@ -167,7 +167,7 @@
         //反选功能
         fx.onclick = function () {
             var pd = false;
-            for (var i = 0; i < input_check.length-1; i++) {
+            for (var i = 1; i < input_check.length-1; i++) {
                 if (input_check[i].checked == true) {
                     input_check[i].checked = false;
                 } else {
@@ -182,9 +182,7 @@
                         break;
                     }
                 }
-                if (pd == true) {
                     bt.checked = pd;
-                }
         }
     </script>
 </body>
