@@ -135,6 +135,7 @@
         var bt = document.getElementById("bt-checkbox");
         var input_check = document.getElementsByTagName("input");
         var fx = document.getElementById("fx")
+        //实现全选功能，让所有按钮与全选按钮的选择状态相同
         bt.onclick = function () {
             for (var i = 0; i < input_check.length; i++) {
                 input_check[i].checked = bt.checked;
@@ -142,47 +143,44 @@
         }
 
         var pd = false;
-        for (var i = 1; i < input_check.length; i++) {
-            //此循环仅是为了绑定事件
-            input_check[i].onclick = function () {
+        var fn = function auto() {
                 //此处是为了实现勾选全部复选框后，全选框自动勾选
                 for (var i = 1; i < input_check.length - 1; i++) {
-                    if (input_check[i].checked == true) {
+                    if (input_check[i].checked === true) {
                         pd = true;
                     } else {
                         pd = false;
                         break;
                     }
                 }
-                if (pd == true) {
                     bt.checked = pd;
-                }
-                //此处实现全选框自动取消勾选
-                if (this.checked == false) {
-                    bt.checked = false;
-                }
-            }
+            };
+
+        //此层循环仅是为了绑定事件
+        for (var i = 1; i < input_check.length; i++) {
+            input_check[i].onclick = fn;
         }
 
         //反选功能
         fx.onclick = function () {
             var pd = false;
-            for (var i = 1; i < input_check.length-1; i++) {
-                if (input_check[i].checked == true) {
+            for (var i = 1; i < input_check.length - 1; i++) {
+                if (input_check[i].checked === true) {
                     input_check[i].checked = false;
                 } else {
                     input_check[i].checked = true;
                 }
             }
+            //此处代码等同于auto函数
             for (var i = 1; i < input_check.length - 1; i++) {
-                    if (input_check[i].checked == true) {
-                        pd = true;
-                    } else {
-                        pd = false;
-                        break;
-                    }
+                if (input_check[i].checked === true) {
+                    pd = true;
+                } else {
+                    pd = false;
+                    break;
                 }
-                    bt.checked = pd;
+            }
+            bt.checked = pd;
         }
     </script>
 </body>
