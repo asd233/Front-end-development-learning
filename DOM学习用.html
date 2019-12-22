@@ -58,7 +58,7 @@
     <input type="text" id="UserPassWord">
     <input type="button" value="登陆" id="dl"> -->
     <table>
-        <tr class="biaoti">
+        <tr class="biaoti" id="biaoti">
             <td>全选<input type="checkbox" id="bt-checkbox"></td>
             <td>商品</td>
             <td>价钱</td>
@@ -185,8 +185,39 @@
 
         // 学习children属性
         // chindren 子元素
-        var ele = document.getElementsByClassName("biaoti");
-        console.log(ele[0].childNodes);
+        var ele = document.getElementById("biaoti");
+        console.log(ele.childNodes);
+
+        // firstElementchild 第一个元素子节点
+        // lastElementChild 最后一个元素子节点
+        // 有兼容性问题，IE9后支持
+        var ele = document.getElementById("biaoti");
+        console.log(ele.firstElementChild);
+        console.log(ele.lastElementChild);
+        
+        // 实现lastElementChild
+        function getlastElementnode(ele){
+        var elechild = ele.childNodes;
+        for(var i = elechild.length-1;i>=0;i--){
+            if(elechild[i].nodeType === 1){
+                return elechild[i];
+            }
+        }
+        }
+        console.log(getlastElementnode(ele));
+
+        //<a href="javascript:void(0);">
+        // void 运算符 对给定的表达式进行求值，然后返回 undefined。
+        /* 当用户点击一个以 javascript: URI 时，它会执行URI中的代码，
+        然后用返回的值替换页面内容，除非返回的值是undefined。void运算符可用于返回undefined*/
+
+        // nextSibling 下一个兄弟节点
+        // nextElementSibling 下一个元素兄弟节点
+        console.log(ele.nextElementSibling);
+        // lastSibling  上一个兄弟节点
+        // lastElementSibling 上一个元素兄弟节点
+        console.log(ele.lastElementSibling);
+
     </script>
 </body>
 
