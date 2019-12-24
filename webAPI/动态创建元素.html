@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mn"></div>
+    <script>
+    //动态生成四大美女列表
+    //原本是使用innerHTML插入元素，但会有重绘的性能问题
+    //因为字符串不可修改，所以会开辟多个内存空间，有性能问题，改用数组方法
+    var date = ["西施","貂蝉","王昭君","杨玉环"];
+    var ul = [];
+        var mn = document.getElementById("mn");
+        ul[0] = "<ul>";
+            for(var i = 0;i<=date.length;i++){
+                ul[i] ="<li>" + date[i] + "</li>";
+            }
+        ul[ul.length-1]= "</ul>";
+        mn.innerHTML = ul.join("");
+    </script>
+</body>
+</html>
