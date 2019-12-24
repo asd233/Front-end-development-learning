@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 背包算法
+		var value = [6, 3, 5, 4, 6];// 价值
+		var weight = [2, 2, 6, 5, 4];// 重量
+		var arr = [];
+		for (var i = 0; i <value.length; i++) {
+			arr[i] = [];
+		};
+		for (var ww = 1; ww <11; ww++) {
+			var max;
+			for (var i = 0; i < value.length; i++) {
+				if (weight[i] <= ww) {
+					//取放入背包前的最大值
+					if (i==0) {
+						max = 0;
+					}else{
+						max = arr[i-1][ww-1];
+					}
+					//取要放入的物品的价值
+					var f =value[i];
+					//是否有余
+					if (ww-weight[i] > 0) {
+						if (i != 0) {
+							f = value[i]+arr[i-1][ww-1-weight[i]];
+						}
+					}
+					if (f >= max) {
+						max = f;
+					}
+					arr[i][ww-1] = max;
+					//不放入背包
+				}else{
+					if (i==0) {
+						arr[i][ww-1] = 0;
+					}else{
+						arr[i][ww-1] = arr[i-1][ww-1];
+					}
+				}
+			};
+		};
+		console.log(arr);
+    </script>
+</body>
+
+</html>
