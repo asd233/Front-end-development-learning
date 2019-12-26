@@ -21,6 +21,11 @@
             }
         ul[ul.length-1]= "</ul>";
         mn.innerHTML = ul.join("");
+
+    //学习使用document.createElement()方法生成元素
+    var li = document.createElement("li");
+    li.innerText = "美女";
+    mn.appendChild(li);
     </script>
 </body>
 </html>
