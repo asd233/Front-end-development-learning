@@ -16,8 +16,8 @@
     var ul = [];
         var mn = document.getElementById("mn");
         ul[0] = "<ul>";
-            for(var i = 0;i<=date.length;i++){
-                ul[i] ="<li>" + date[i] + "</li>";
+            for(var i = 1;i<=date.length+1;i++){
+                ul[i] ="<li>" + date[i-1] + "</li>";
             }
         ul[ul.length-1]= "</ul>";
         mn.innerHTML = ul.join("");
