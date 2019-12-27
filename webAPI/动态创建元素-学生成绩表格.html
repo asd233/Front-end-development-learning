@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #box table {
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    #box table tbody td {
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <div id="box"></div>
+    <script>
+        //需要存入的学生数据
+        var dates = [
+            { name: "张三", subject: "数学", score: "90" },
+            { name: "李四", subject: "数学", score: "80" },
+            { name: "王五", subject: "数学", score: "70" },
+            { name: "赵六", subject: "数学", score: "60" }
+        ];
+
+        //数据类别
+        var date = ["姓名", "科目", "成绩", "操作"];
+
+        //创建元素
+        var table = document.createElement("table");
+        table.style.border = "2px solid";
+        table.style.width = "300px";
+
+        var thead = document.createElement("thead");
+
+        var tr = document.createElement("tr");
+        tr.style.height = "40px";
+        tr.style.background = "lightgray"
+
+        //追加元素
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
+        var div = document.getElementById("box");
+        div.appendChild(table);
+
+        for (var i = 0; i < date.length; i++) {
+            var th = document.createElement("th");
+            th.style.border = "1px solid";
+            th.innerText = date[i];
+            tr.appendChild(th);
+        }
+
+        //tbody部分
+        var tbody = document.createElement("tbody");
+        for (var j = 0; j < dates.length; j++) {
+            // var name = document.createElement("td");
+            // 在javascript中name既不是保留字，也不是关键字，但在window对象中有一个属性是 window.name
+            // window.name 是一个字符串，所以当你声明name变量的时候,相当于给window.name赋值,所以只能为字符串。
+            // console.log(window.name);打印结果为字符串："[object HTMLTableCellElement]"
+            var names = document.createElement("td");
+            var subject = document.createElement("td");
+            var score = document.createElement("td");
+            var cj = document.createElement("td");
+            var cj_a = document.createElement("a");
+            var body_tr = document.createElement("tr");
+
+
+            names.innerText = dates[j].name;
+            subject.innerText = dates[j].subject;
+            score.innerText = dates[j].score;
+            cj_a.innerText = "删除";
+
+            cj_a.href = "javascript:void(0)"
+
+            body_tr.appendChild(names);
+            body_tr.appendChild(subject);
+            body_tr.appendChild(score);
+            cj.appendChild(cj_a);
+            body_tr.appendChild(cj);
+            tbody.appendChild(body_tr);
+        }
+        table.appendChild(tbody);
+
+    </script>
+</body>
+
+</html>
