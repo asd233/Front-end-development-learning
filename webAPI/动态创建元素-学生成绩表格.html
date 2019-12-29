@@ -78,8 +78,16 @@
             score.innerText = dates[j].score;
             cj_a.innerText = "删除";
 
-            cj_a.href = "javascript:void(0)"
+            cj_a.href = "javascript:void(0)";
 
+            // 删除节点
+            cj_a.onclick = function del() {
+                var tr = this.parentNode.parentNode;
+                var tbody = tr.parentNode;
+                tbody.removeChild(tr);
+            };
+
+            // 追加节点
             body_tr.appendChild(names);
             body_tr.appendChild(subject);
             body_tr.appendChild(score);
@@ -87,7 +95,7 @@
             body_tr.appendChild(cj);
             tbody.appendChild(body_tr);
         }
-        table.appendChild(tbody);
+        table.appendChild(tbody); //最后在追加到table元素上，仅触发一次重绘
 
     </script>
 </body>
