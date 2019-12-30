@@ -81,11 +81,7 @@
             cj_a.href = "javascript:void(0)";
 
             // 删除节点
-            cj_a.onclick = function del() {
-                var tr = this.parentNode.parentNode;
-                var tbody = tr.parentNode;
-                tbody.removeChild(tr);
-            };
+            cj_a.onclick = del;
 
             // 追加节点
             body_tr.appendChild(names);
@@ -95,6 +91,11 @@
             body_tr.appendChild(cj);
             tbody.appendChild(body_tr);
         }
+        function del() {
+            var tr = this.parentNode.parentNode;
+            var tbody = tr.parentNode;
+            tbody.removeChild(tr);
+        };
         table.appendChild(tbody); //最后在追加到table元素上，仅触发一次重绘
 
     </script>
