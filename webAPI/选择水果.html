@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../common.js"></script>
+</head>
+<style>
+    select {
+        width: 200px;
+        height: 160px;
+        background-color: #33cccc;
+        font-size: 20px;
+
+    }
+</style>
+
+<body>
+    <select id="all" multiple="multiple">
+        <option value="">苹果</option>
+        <option value="">橘子</option>
+        <option value="">梨</option>
+        <option value="">西瓜</option>
+        <option value="">水蜜桃</option>
+    </select>
+    <input type="button" value="<<" id="btn1">
+    <input type="button" value="<" id="btn2">
+    <input type="button" value=">" id="btn3">
+    <input type="button" value=">>" id="btn4">
+    <select id="select" multiple="multiple"></select>
+
+    <script>
+        var allNode = document.getElementById("all");
+        var selectNode = document.getElementById("select");
+
+        my$("btn4").onclick = function all() {
+            var child = allNode.children;
+            var length = child.length;
+            for (var i = 0; i < length; i++) {
+                select.appendChild(child[0]);
+            }
+        };
+
+        my$("btn1").onclick = function select() {
+            var child = selectNode.children;
+            var length = child.length;
+            for (var i = 0; i < length; i++) {
+                allNode.appendChild(child[0]);
+            }
+        };
+
+        my$("btn3").onclick = function () {
+            var child = allNode.children;
+            var length = child.length;
+            for (var i = 0; i < length; i++) {
+                if (child[i] == child[length]) {
+                    break;
+                }
+                if (child[i].selected == true) {
+                    selectNode.appendChild(child[i]);
+                    i = 0;
+                }
+            }
+        }
+
+        my$("btn2").onclick = function () {
+            var child = selectNode.children;
+            var length = child.length;
+            for (var i = 0; i < length; i++) {
+                if (child[i] == child[length]) {
+                    break;
+                }
+                if (child[i].selected == true) {
+                    allNode.appendChild(child[i]);
+                    i = 0;
+                }
+            }
+        }
+    //</script>
+</body>
+
+</html>
