@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+    <script>
+        var btn = document.getElementById("btn");
+        // //第一种绑定事件函数的方法 只能绑定一个相同的事件函数
+        // btn.onclick = function () {
+        //     alert("hello");
+        //     //第一种移除事件函数的方法
+        //     btn.onclick = null;
+        // }
+        //第二种绑定事件函数的方法 可以绑定多个事件函数
+        //但有兼容性问题
+        //如果绑定了事件函数则无法移除事件函数
+        btn.addEventListener("click", function btnclick() {
+            alert("hello");
+            //第二种移除事件函数的方法
+            btn.removeEventListener("click", btnclick);
+        })
+
+    </script>
+</body>
+
+</html>
