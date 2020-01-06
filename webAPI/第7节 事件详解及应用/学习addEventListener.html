@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="a1">
+    <script src="../../common.js"></script>
+    <script>
+        var inp = my$("a1");
+        inp.addEventListener("click", function () {
+            alert("hhh");
+        })
+        inp.addEventListener("click", function () {
+            alert("hahaha");
+        })
+        // addEventListener 可绑定多个事件函数
+    </script>
+</body>
+
+</html>
