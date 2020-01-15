@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../common.js"></script>
+</head>
+<style>
+    #box {
+        width: 300px;
+        height: 300px;
+        border: 1px solid red;
+        margin: 100px 10px 10px 100px;
+        position: relative;
+    }
+
+    #box_p {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+</style>
+
+<body>
+    <div id="box">
+        <div id="box_p"></div>
+    </div>
+</body>
+<script>
+    // 获取两个div元素
+    var box = my$("box");
+    var box_p = my$("box_p")
+    document.onmousemove = function (e) {
+        // 获取鼠标在盒子中的位置
+        var x = e.pageX - box.offsetLeft;
+        var y = e.pageY - box.offsetTop;
+        // 进行判断，防止内部div溢出
+        switch (true) {
+            case x < 50:
+                x = 50;
+                break;
+            case x > 250:
+                x = 250;
+                break;
+        }
+        switch (true) {
+            case y < 50:
+                y = 50;
+                break;
+            case y > 250:
+                y = 250;
+                break;
+        }
+        // 使鼠标在小盒子中央
+        box_p.style.left = x - 50 + "px";
+        box_p.style.top = y - 50 + "px";
+    }
+</script>
+
+</html>
