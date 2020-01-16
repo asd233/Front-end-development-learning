@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+</style>
+
+<body>
+    <input type="text" id="text">
+    <script>
+        //键盘事件
+        var text = document.getElementById("text");
+        text.onkeydown = function (e) {
+            var code = e.keyCode;
+            console.log(code);
+            if (!((code >= 48 && code <= 57) || (code >= 96 && code <= 105) || code == 8)) {
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
