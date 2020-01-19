@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #tip {
+        display: none;
+        position: fixed;
+        top: 35%;
+        left: 40%;
+        width: 200px;
+        height: 100px;
+        border: 3px double rgb(0, 255, 64);
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 30px;
+        box-sizing: border-box;
+        opacity: 1;
+    }
+</style>
+
+<body>
+    <input type="button" value="删除" id="del">
+    <div id="tip"><span>删除成功</span></div>
+    <script>
+        var tip = document.getElementById("tip");
+        var del = document.getElementById("del");
+        del.onclick = function () {
+            tip.style.display = "block";
+            console.log(tip.style.opacity);
+            tip.style.opacity = 1;
+            //1秒后删除提示自动消失
+            setTimeout(function name() {
+                //修改透明度实现过渡效果
+                var sir = setInterval(function () {
+                    if (tip.style.opacity !== "0") {
+                        tip.style.opacity -= 0.1;
+                    } else {
+                        tip.style.display = "none";
+                        clearInterval(sir);
+                    }
+                }, 55);
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
