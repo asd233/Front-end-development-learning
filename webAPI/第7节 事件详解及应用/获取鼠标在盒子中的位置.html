@@ -19,6 +19,7 @@
 
     #box_p {
         position: absolute;
+        display: none;
         width: 100px;
         height: 100px;
         background-color: blue;
@@ -41,12 +42,47 @@
         // 进行判断，防止内部div溢出
         if ((x > 50 && x < 250) && (y > 50 && y < 250)) {
             box_p.style.display = "block";
+            // 使鼠标在小盒子中央
+            box_p.style.left = x - 50 + "px";
+            box_p.style.top = y - 50 + "px";
+            //当鼠标在四个角的正方形区域时
+        } else if ((x >= 0 && x <= 50) && (y >= 0 && y <= 50)) {
+            box_p.style.display = "block";
+            box_p.style.left = "0px";
+            box_p.style.top = "0px";
+        } else if ((x >= 250 && x <= 300) && (y >= 250 && y <= 300)) {
+            box_p.style.display = "block";
+            box_p.style.left = "200px";
+            box_p.style.top = "200px";
+        } else if ((x >= 0 && x <= 50) && (y >= 250 && y <= 300)) {
+            box_p.style.display = "block";
+            box_p.style.left = "0px";
+            box_p.style.top = "200px";
+        } else if ((x >= 250 && x <= 300) && (y >= 0 && y <= 50)) {
+            box_p.style.display = "block";
+            box_p.style.left = "200px";
+            box_p.style.top = "0px";
+            //除四个角外的区域
+        } else if ((x > 0 && x <= 50) && (y > 0 && y < 300)) {
+            //添加条件 判断x轴时限定y 判断y轴时同理
+            box_p.style.display = "block";
+            box_p.style.top = y - 50 + "px";
+            box_p.style.left = "0px";
+        } else if ((x >= 250 && x < 300) && (y > 0 && y < 300)) {
+            box_p.style.display = "block";
+            box_p.style.top = y - 50 + "px";
+            box_p.style.left = "200px";
+        } else if ((y > 0 && y <= 50) && (x > 0 && x < 300)) {
+            box_p.style.display = "block";
+            box_p.style.top = "0px";
+            box_p.style.left = x - 50 + "px";
+        } else if ((y >= 250 && y < 300) && (x > 0 && x < 300)) {
+            box_p.style.display = "block";
+            box_p.style.top = "200px";
+            box_p.style.left = x - 50 + "px";
         } else {
             box_p.style.display = "none";
         }
-        // 使鼠标在小盒子中央
-        box_p.style.left = x - 50 + "px";
-        box_p.style.top = y - 50 + "px";
     }
 </script>
 
