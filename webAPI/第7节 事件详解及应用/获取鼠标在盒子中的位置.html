@@ -37,7 +37,7 @@
         border: 1px solid #000;
         float: left;
         overflow: hidden;
-
+        display: none;
     }
 
     #Magnifier img {
@@ -53,7 +53,9 @@
             <img src="Saber.jpg" alt="Saber">
             <div id="SmallBox"></div>
         </div>
-        <div id="Magnifier"><img src="Saber.jpg" alt="" id="Saber"></div>
+        <div id="Magnifier">
+            <img src="Saber.jpg" alt="" id="Saber">
+        </div>
     </div>
 </body>
 <script>
@@ -62,64 +64,43 @@
     var smallBox = my$("SmallBox");
     var saber = my$("Saber");
     var magnifier = my$("Magnifier")
-    var boxZeroPercent = 0;
     var smallBoxHundredPercent = parseInt(getComputedStyle(smallBox).getPropertyValue("width"));//300
     var smallBoxFiftyPercent = smallBoxHundredPercent / 2;//150
     var boxHundredPercent = parseInt(getComputedStyle(box).getPropertyValue("width"));//450
-    document.onmousemove = function (e) {
+    box.onmouseover = function () {
+        SmallBox.style.display = "block";
+        magnifier.style.display = "block";
+    }
+    box.onmousemove = function (e) {
         // 获取鼠标在盒子中的位置
-        var x = e.pageX - box.offsetLeft;
-        var y = e.pageY - box.offsetTop;
-        // 获取smallbox相对父盒子的偏移量，用于计算百分比
+        var x = e.pageX - box.offsetLeft - smallBoxFiftyPercent;
+        var y = e.pageY - box.offsetTop - smallBoxFiftyPercent;
+        //计算内部盒子的最大距离
+        var max = boxHundredPercent - smallBoxHundredPercent;
+        // 进行限制，防止内部盒子溢出
+        if (x < 0) {
+            x = 0;
+        } if (x > max) {
+            x = max;
+        }
+        if (y < 0) {
+            y = 0;
+        }
+        if (y > max) {
+            y = max;
+        }
+        smallBox.style.top = y + "px";
+        smallBox.style.left = x + "px";
+
+        // 获取smallbox相对父盒子的偏移量，用于计算放大镜移动的百分比
         var smallBoxtop = smallBox.offsetTop;
         var smallBoxleft = smallBox.offsetLeft;
-        // 进行判断，防止内部div溢出
-        if ((x > smallBoxFiftyPercent && x < smallBoxHundredPercent) && (y > smallBoxFiftyPercent && y < smallBoxHundredPercent)) {
-            SmallBox.style.display = "block";
-            // 使鼠标在小盒子中央
-            SmallBox.style.left = x - smallBoxFiftyPercent + "px";
-            SmallBox.style.top = y - smallBoxFiftyPercent + "px";
-            //当鼠标在四个角的正方形区域时
-        } else if ((x >= boxZeroPercent && x <= smallBoxFiftyPercent) && (y >= boxZeroPercent && y <= smallBoxFiftyPercent)) {
-            SmallBox.style.display = "block";
-            SmallBox.style.left = "0px";
-            SmallBox.style.top = "0px";
-        } else if ((x >= smallBoxHundredPercent && x <= boxHundredPercent) && (y >= smallBoxHundredPercent && y <= boxHundredPercent)) {
-            SmallBox.style.display = "block";
-            SmallBox.style.left = smallBoxFiftyPercent + "px";
-            SmallBox.style.top = smallBoxFiftyPercent + "px";
-        } else if ((x >= boxZeroPercent && x <= smallBoxFiftyPercent) && (y >= smallBoxHundredPercent && y <= boxHundredPercent)) {
-            SmallBox.style.display = "block";
-            SmallBox.style.left = "0px";
-            SmallBox.style.top = smallBoxFiftyPercent + "px";
-        } else if ((x >= smallBoxHundredPercent && x <= boxHundredPercent) && (y >= boxZeroPercent && y <= smallBoxFiftyPercent)) {
-            SmallBox.style.display = "block";
-            SmallBox.style.left = smallBoxFiftyPercent + "px";
-            SmallBox.style.top = "0px";
-            //除四个角外的区域
-        } else if ((x > boxZeroPercent && x <= smallBoxFiftyPercent) && (y > boxZeroPercent && y < boxHundredPercent)) {
-            //添加条件 判断x轴时限定y 判断y轴时同理
-            SmallBox.style.display = "block";
-            SmallBox.style.top = y - smallBoxFiftyPercent + "px";
-            SmallBox.style.left = "0px";
-        } else if ((x >= smallBoxHundredPercent && x < boxHundredPercent) && (y > boxZeroPercent && y < boxHundredPercent)) {
-            SmallBox.style.display = "block";
-            SmallBox.style.top = y - smallBoxFiftyPercent + "px";
-            SmallBox.style.left = smallBoxFiftyPercent + "px";
-        } else if ((y > boxZeroPercent && y <= smallBoxFiftyPercent) && (x > boxZeroPercent && x < boxHundredPercent)) {
-            SmallBox.style.display = "block";
-            SmallBox.style.top = "0px";
-            SmallBox.style.left = x - smallBoxFiftyPercent + "px";
-        } else if ((y >= smallBoxHundredPercent && y < boxHundredPercent) && (x > boxZeroPercent && x < boxHundredPercent)) {
-            SmallBox.style.display = "block";
-            SmallBox.style.top = smallBoxFiftyPercent + "px";
-            SmallBox.style.left = x - smallBoxFiftyPercent + "px";
-        } else {
-            SmallBox.style.display = "none";
-        }
-        magnifier.style.display = getComputedStyle(smallBox).getPropertyValue("display");
         saber.style.top = -(smallBoxtop / boxHundredPercent * 810) + "px";
         saber.style.left = -(smallBoxleft / boxHundredPercent * 810) + "px";
+    }
+    box.onmouseout = function () {
+        SmallBox.style.display = "none";
+        magnifier.style.display = "none";
     }
 </script>
 
