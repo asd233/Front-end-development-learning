@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #win {
+        position: relative;
+
+        overflow: hidden;
+
+        width: 300px;
+        height: 400px;
+        margin-top: 50px;
+        margin-left: 100px;
+
+        border: 1px solid #000;
+    }
+
+    #text {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 280px;
+        user-select: none;
+    }
+
+    #gdt {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 20px;
+        height: 400px;
+
+        background-color: rgb(148, 148, 148);
+    }
+
+    #gdk {
+        position: absolute;
+        top: 0;
+        right: 0px;
+
+        width: 18px;
+        height: 360px;
+
+        border-radius: 9px;
+        background-color: #00c3ff;
+    }
+</style>
+
+<body>
+    <div id="win">
+        <div id="text">
+            我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字我是文字
+        </div>
+        <div id="gdt">
+            <div id="gdk"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var win = document.getElementById("win");
+    var text = document.getElementById("text");
+    var gdt = document.getElementById("gdt");
+    var gdk = document.getElementById("gdk");
+    gdk.style.height = (1 - (text.scrollHeight - 400) / text.scrollHeight) * 400 + "px";
+    if (text.scrollHeight <= 400) {
+        gdt.style.display = "none"
+        text.style.width = "100%";
+    }
+    gdk.onmousedown = function (e) {
+        var gdkoff = e.pageY - win.offsetTop - gdk.offsetTop;
+        document.onmousemove = function (e) {
+            var gdkHeight = parseInt(getComputedStyle(gdk).getPropertyValue("height"));//实时获取滚动块的高度
+            var gdkTop = parseInt(getComputedStyle(gdk).getPropertyValue("top")) / 400;
+            var textHeight = parseInt(getComputedStyle(text).getPropertyValue("height"))
+            var y = e.pageY - win.offsetTop;//鼠标在盒子内的位置
+            if (y - gdkoff < 0) {
+                gdk.style.top = 0 + "px";
+            } else if (y - gdkoff > 400 - gdkHeight) {
+                gdk.style.top = 400 - gdkHeight + "px";
+            } else {
+                gdk.style.top = y - gdkoff + "px";
+            }
+            //把文本与滚动条关联到一起
+            text.style.top = -(textHeight * gdkTop) + "px"
+        }
+    }
+    document.onmouseup = function () {
+        document.onmousemove = null;
+    }
+</script>
+
+</html>
