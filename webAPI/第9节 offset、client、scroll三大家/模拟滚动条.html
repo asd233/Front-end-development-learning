@@ -73,7 +73,7 @@
     gdk.style.height = (1 - (text.scrollHeight - 400) / text.scrollHeight) * 400 + "px";//滚动条随内容长度变化
     //在内容不溢出的情况下滚动条自动消失
     if (text.scrollHeight <= 400) {
-        gdt.style.display = "none"
+        gdt.style.display = "none";
         text.style.width = "100%";
     }
     gdk.onmousedown = function (e) {
@@ -81,7 +81,7 @@
         document.onmousemove = function (e) {
             var gdkHeight = parseInt(getComputedStyle(gdk).getPropertyValue("height"));//实时获取滚动块的高度
             var gdkTop = parseInt(getComputedStyle(gdk).getPropertyValue("top")) / 400;
-            var textHeight = parseInt(getComputedStyle(text).getPropertyValue("height"))
+            var textHeight = parseInt(getComputedStyle(text).getPropertyValue("height"));
             var y = e.pageY - win.offsetTop;//鼠标在盒子内的位置
             if (y - gdkY < 0) {
                 gdk.style.top = 0 + "px";
@@ -91,7 +91,7 @@
                 gdk.style.top = y - gdkY + "px";
             }
             //把文本与滚动条关联到一起
-            text.style.top = -(textHeight * gdkTop) + "px"
+            text.style.top = -(textHeight * gdkTop) + "px";
         }
     }
     document.onmouseup = function () {
