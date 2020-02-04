@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zhcn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+
+            background: rgb(110, 110, 110);
+            overflow: hidden;
+        }
+
+        .yudi {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            animation: lx 1.5s cubic-bezier(0.53, 0.26, 0.97, 0.66) infinite;
+            background: url("./hongbao2.png") no-repeat;
+            background-size: 60px 80px;
+        }
+
+        .yudi:hover {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            animation: lx 1.5s cubic-bezier(0.53, 0.26, 0.97, 0.66) paused infinite;
+            background: url("./hongbao2.png") no-repeat;
+            background-size: 60px 80px;
+        }
+
+        @keyframes lx {
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate3d(10px, 100vh, -10px);
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="bg" id="bg">
+        <div class="yudi"></div>
+    </div>
+    <script>
+        var bg = document.getElementById("bg");
+        var number = 0;
+        for (var i = 0; i < 30; i++) {
+            var lefts = Math.random();
+            number += lefts;
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute("class", "yudi");
+            newDiv.style.left = number * 10 + "%";
+            newDiv.style.top = lefts * 5 + 2 + "%";
+            newDiv.style.animationDelay = lefts + "s";
+            newDiv.addEventListener("click", function () {
+                window.location.assign("https://www.jd.com");
+            });
+            bg.append(newDiv);
+        }
+    </script>
+</body>
+
+</html>
