@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 
 <head>
     <meta charset="UTF-8">
@@ -104,26 +104,56 @@
         var itemWidth = item[0].offsetWidth;
         // 3 求出列数
         var column = Math.floor(itemBoxWidth / itemWidth);
-        // 4 求出间距
-        // 5 实现瀑布流布局的方法
+        // 4 实现瀑布流布局的方法
+        var min;
         function pbl() {
+            item = document.querySelectorAll(".item");
             var arr = [];
+            var minIndex;
             for (var i = 0; i < item.length; i++) {
                 if (i < column) {
                     item[i].style.top = 0;
-                    item[i].style.left = itemWidth * i + "px";
+                    item[i].style.left = itemWidth * i + 10 * i + "px";
                     arr[i] = item[i].offsetHeight;
                 } else {
-                    var min = Math.min.apply(null, arr);
-                    var minIndex = arr.indexOf(min);
-                    item[i].style.top = min + "px";
+                    min = Math.min.apply(null, arr);
+                    minIndex = arr.indexOf(min);
+                    item[i].style.top = min + 10 + "px";
                     item[i].style.left = minIndex * itemWidth + "px";
-                    arr[minIndex] += item[i].offsetWidth
+                    item[i].style.left = minIndex * itemWidth + 10 * minIndex + "px";
+                    arr[minIndex] += item[i].offsetHeight + 10;
                 }
             }
         }
         pbl();
-        // 6 滚动页面时 加载数据
+        // 5 滚动页面时 加载数据
+        window.addEventListener("scroll", function () {
+            var nowTop = parseInt(document.documentElement.scrollTop);
+            if (nowTop + window.innerHeight >= min) {
+                var json = [
+                    { "src": "./images/P_000.jpg" },
+                    { "src": "./images/P_001.jpg" },
+                    { "src": "./images/P_002.jpg" },
+                    { "src": "./images/P_003.jpg" },
+                    { "src": "./images/P_004.jpg" },
+                    { "src": "./images/P_005.jpg" },
+                    { "src": "./images/P_006.jpg" },
+                    { "src": "./images/P_007.jpg" },
+                    { "src": "./images/P_008.jpg" },
+                    { "src": "./images/P_009.jpg" },
+                    { "src": "./images/P_010.jpg" }
+                ];
+                for (var i = 0; i < json.length; i++) {
+                    var div = document.createElement("div");
+                    div.setAttribute("class", "item");
+                    var img = document.createElement("img");
+                    img.setAttribute("src", json[i].src);
+                    div.appendChild(img);
+                    itemBox.appendChild(div);
+                }
+                pbl();
+            }
+        })
     }
 </script>
 
