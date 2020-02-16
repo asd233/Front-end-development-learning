@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #game {
+            width: 800px;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #bg {
+            width: 1600px;
+            height: 600px;
+            background: url('./images/sky.png');
+            animation: sky 5s linear infinite;
+        }
+
+        @keyframes sky {
+            100% {
+                transform: translateX(-800px);
+            }
+        }
+
+        #bird {
+            width: 45px;
+            height: 45px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            overflow: hidden;
+        }
+
+        #birdimg {
+            animation: bird .5s steps(3) infinite;
+        }
+
+        @keyframes bird {
+            100% {
+                transform: translateX(-156px);
+            }
+        }
+
+        #tip {
+            display: none;
+            width: 400px;
+            height: 150px;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            background-color: black;
+            color: #fff;
+            border: 3px solid rgb(0, 255, 13);
+            text-align: center;
+            line-height: 60px;
+            font-size: 20px;
+            z-index: 10;
+        }
+
+        #num {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 10;
+            width: 100px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game">
+        <div id="bg"></div>
+        <div id="bird"><img src="./images/birds.png" alt="鸟" id="birdimg"></div>
+        <div id="tip">
+            <p>Game over
+                <br>重玩请刷新</p>
+        </div>
+        <div id="num">得分为：0</div>
+    </div>
+    <script>
+        // 获取相应的元素
+        var game = document.querySelector("#game");
+        var birdEle = document.querySelector("#bird");
+        var birdimg = document.querySelector("#birdimg");
+        var bg = document.querySelector("#bg");
+        var tip = document.querySelector("#tip");
+        var num = document.querySelector("#num");
+        var state = true;
+        //得分
+        var numValue = 0;
+        // 不点击时小鸟往下掉，点击时小鸟往上飞一段随机的距离
+        var speed = 0;
+        var birdEleTop = birdEle.offsetTop;
+        var birdTop = setInterval(function () {
+            if (state) {
+                if (birdEle.offsetTop < game.offsetHeight - 45 && birdEle.offsetTop > 0) {
+                    speed++;
+                    birdEleTop += speed;
+                    birdEle.style.top = birdEleTop + "px";
+                } else {
+                    state = false;
+                    bg.style.animationPlayState = "paused";
+                    birdimg.style.animationPlayState = "paused";
+                    tip.style.display = "block";
+                }
+            }
+        }, 40);
+        window.addEventListener("click", function () {
+            speed = -10;
+        })
+        //创建管道
+        function create(left) {
+            var div = document.createElement("div");
+            div.style.width = "52px";
+            div.style.height = "1041px";
+            div.style.position = "absolute";
+            div.style.top = Math.ceil(Math.random() * (0 - (-440))) + (-440) + "px";
+            div.style.left = left + "px";
+            div.style.background = "url('./images/pipe3.png')";
+            game.appendChild(div);
+            //移动管道
+            setInterval(function () {
+                if (state) {
+                    left -= 2;
+                    div.style.left = left + "px";
+                    //增加得分
+                    if (left == 50) {
+                        numValue++;
+                        num.innerText = "得分为：" + numValue;
+                    }
+                    if (left < -52) {
+                        left = 1300;
+                        div.style.top = Math.ceil(Math.random() * (0 - (-440))) + (-440) + "px";
+
+                    }
+                    var pd = birdEle.offsetTop < parseInt(div.style.top) + 420 && birdEle.offsetLeft + 45 > left && birdEle.offsetLeft < left + 52;
+                    var pdd = birdEle.offsetTop + 45 > parseInt(div.style.top) + 620 && birdEle.offsetLeft + 45 > left && birdEle.offsetLeft < left + 52;
+                    if (pd || pdd) {
+                        state = false;
+                        bg.style.animationPlayState = "paused";
+                        birdimg.style.animationPlayState = "paused";
+                        tip.style.display = "block";
+                    }
+                }
+            }, 10)
+        }
+        //创建四个管道
+        create(400);
+        create(700);
+        create(1000);
+        create(1300);
+
+    </script>
+</body>
+
+</html>
