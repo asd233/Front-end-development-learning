@@ -119,7 +119,6 @@
                     min = Math.min.apply(null, arr);
                     minIndex = arr.indexOf(min);
                     item[i].style.top = min + 10 + "px";
-                    item[i].style.left = minIndex * itemWidth + "px";
                     item[i].style.left = minIndex * itemWidth + 10 * minIndex + "px";
                     arr[minIndex] += item[i].offsetHeight + 10;
                 }
