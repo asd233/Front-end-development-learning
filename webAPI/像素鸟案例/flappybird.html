@@ -125,7 +125,7 @@
             div.style.width = "52px";
             div.style.height = "1041px";
             div.style.position = "absolute";
-            div.style.top = Math.ceil(Math.random() * (0 - (-440))) + (-440) + "px";
+            div.style.top = Math.ceil(Math.random() * (-100 - (-340))) + (-340) + "px";
             div.style.left = left + "px";
             div.style.background = "url('./images/pipe3.png')";
             game.appendChild(div);
@@ -138,11 +138,9 @@
                     if (left == 50) {
                         numValue++;
                         num.innerText = "得分为：" + numValue;
-                    }
-                    if (left < -52) {
-                        left = 1300;
-                        div.style.top = Math.ceil(Math.random() * (0 - (-440))) + (-440) + "px";
-
+                    } else if (left < -52) {
+                        left = 1250;
+                        div.style.top = Math.ceil(Math.random() * (-100 - (-340))) + (-340) + "px";
                     }
                     var pd = birdEle.offsetTop < parseInt(div.style.top) + 420 && birdEle.offsetLeft + 45 > left && birdEle.offsetLeft < left + 52;
                     var pdd = birdEle.offsetTop + 45 > parseInt(div.style.top) + 620 && birdEle.offsetLeft + 45 > left && birdEle.offsetLeft < left + 52;
