@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  width: 600px;
+  height: 600px;
+
+  background-color: #7e7e7e;
+}
