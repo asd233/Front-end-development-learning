@@ -67,7 +67,7 @@
             <td><input type="checkbox"></td>
             <td>8</td>
             <td>8000</td>
-            </trsla>
+        </tr>
         <tr class="sp">
             <td><input type="checkbox"></td>
             <td>pro</td>
@@ -144,17 +144,17 @@
 
         var pd = false;
         var fn = function auto() {
-                //此处是为了实现勾选全部复选框后，全选框自动勾选
-                for (var i = 1; i < input_check.length - 1; i++) {
-                    if (input_check[i].checked === true) {
-                        pd = true;
-                    } else {
-                        pd = false;
-                        break;
-                    }
+            //此处是为了实现勾选全部复选框后，全选框自动勾选
+            for (var i = 1; i < input_check.length - 1; i++) {
+                if (input_check[i].checked === true) {
+                    pd = true;
+                } else {
+                    pd = false;
+                    break;
                 }
-                    bt.checked = pd;
-            };
+            }
+            bt.checked = pd;
+        };
 
         //此层循环仅是为了绑定事件
         for (var i = 1; i < input_check.length; i++) {
@@ -194,15 +194,15 @@
         var ele = document.getElementById("biaoti");
         console.log(ele.firstElementChild);
         console.log(ele.lastElementChild);
-        
+
         // 实现lastElementChild
-        function getlastElementnode(ele){
-        var elechild = ele.childNodes;
-        for(var i = elechild.length-1;i>=0;i--){
-            if(elechild[i].nodeType === 1){
-                return elechild[i];
+        function getlastElementnode(ele) {
+            var elechild = ele.childNodes;
+            for (var i = elechild.length - 1; i >= 0; i--) {
+                if (elechild[i].nodeType === 1) {
+                    return elechild[i];
+                }
             }
-        }
         }
         console.log(getlastElementnode(ele));
 
