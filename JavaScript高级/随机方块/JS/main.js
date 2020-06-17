@@ -1,12 +1,14 @@
 var box = document.querySelector(".box");
 var arr = [];
-for (var i = 0; i < 10; i++) {
-    var box1 = new Box(box);
-    box1.random();
-    arr.push(box1);
+for (let i = 0; i < 10; i++) {
+    let box1 = new Box();
+    let newBox = box1.init(box);
+    box1.random(newBox);
+    arr.push(newBox);
 }
 setInterval(function () {
-    for (var i = 0; i < arr.length; i++) {
-        arr[i].random();
+    let box1 = new Box();
+    for (let i = 0; i < arr.length; i++) {
+        box1.random(arr[i]);
     }
 }, 500)
