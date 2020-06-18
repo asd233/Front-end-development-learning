@@ -1,14 +1,14 @@
-var box = document.querySelector(".box");
+var parent = document.querySelector(".box");
 var arr = [];
+var box = new Box();
+
 for (let i = 0; i < 10; i++) {
-    let box1 = new Box();
-    let newBox = box1.init(box);
-    box1.random(newBox);
+    let newBox = box.init(parent);
+    box.random(newBox);
     arr.push(newBox);
 }
 setInterval(function () {
-    let box1 = new Box();
     for (let i = 0; i < arr.length; i++) {
-        box1.random(arr[i]);
+        box.random(arr[i]);
     }
 }, 500)
