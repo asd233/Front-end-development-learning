@@ -12,16 +12,23 @@
         this.moveId = setInterval(() => {
             this.snake.move();
             this.snake.render(this.map);
-            for (let i = 1; i < this.snake.body.length; i++) {
-                if (this.snake.body[0].left == this.snake.body[i].left && this.snake.body[0].top == this.snake.body[i].top) {
-                    this.gameOver();
-                    break;
-                }
-            }
+            boundary();
         }, 200);
     }
     Game.prototype.gameOver = function () {
+        alert("Game over!");
         clearInterval(this.moveId);
+    }
+    function boundary() {
+        for (let i = 1; i < that.snake.body.length; i++) {
+            if (that.snake.body[0].left == that.snake.body[i].left && that.snake.body[0].top == that.snake.body[i].top) {
+                that.gameOver();
+                break;
+            }
+        }
+        if (that.snake.body[0].left > that.map.offsetWidth / parseInt(that.snake.width) - 1 || that.snake.body[0].top > that.map.offsetHeight / parseInt(that.snake.offsetHeight) - 1) {
+            that.gameOver();
+        }
     }
     document.onkeydown = function (event) {
         switch (event.keyCode) {
