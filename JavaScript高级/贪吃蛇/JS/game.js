@@ -10,9 +10,11 @@
         this.food.render(this.map);
         this.snake.render(this.map);
         this.moveId = setInterval(() => {
+            var lastBody = { left: that.snake.body[that.snake.body.length - 1].left, top: that.snake.body[that.snake.body.length - 1].top, backgroundColor: "green" };
             this.snake.move();
-            this.snake.render(this.map);
+            eat(lastBody);
             boundary();
+            this.snake.render(this.map);
         }, 200);
     }
     Game.prototype.gameOver = function () {
@@ -26,8 +28,15 @@
                 break;
             }
         }
-        if (that.snake.body[0].left > that.map.offsetWidth / parseInt(that.snake.width) - 1 || that.snake.body[0].top > that.map.offsetHeight / parseInt(that.snake.offsetHeight) - 1) {
+        if (that.snake.body[0].left > that.map.offsetWidth / parseInt(that.snake.width) - 1 || that.snake.body[0].top > that.map.offsetHeight / parseInt(that.snake.height) - 1
+            || that.snake.body[0].left < 0 || that.snake.body[0].top < 0) {
             that.gameOver();
+        }
+    }
+    function eat(lastBody) {
+        if (that.snake.body[0].left == parseInt(that.food.left) / parseInt(that.snake.width) && that.snake.body[0].top == parseInt(that.food.top) / parseInt(that.snake.height)) {
+            that.snake.body.push(lastBody);
+            that.food.render(that.map);
         }
     }
     document.onkeydown = function (event) {
@@ -59,6 +68,7 @@
             default:
                 break;
         }
+
     }
     window.Game = Game;
 })()
