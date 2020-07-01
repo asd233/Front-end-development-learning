@@ -4,15 +4,16 @@
         this.food = new Food();
         this.snake = new Snake();
         this.map = map;
+        this.score = 0
         that = this;
     }
     Game.prototype.start = function () {
-        this.food.render(this.map);
+        this.food.render(this.map, that.snake);
         this.snake.render(this.map);
         this.moveId = setInterval(() => {
             var lastBody = { left: that.snake.body[that.snake.body.length - 1].left, top: that.snake.body[that.snake.body.length - 1].top, backgroundColor: "green" };
-            this.snake.move();
             eat(lastBody);
+            this.snake.move();
             boundary();
             this.snake.render(this.map);
         }, 200);
@@ -34,9 +35,12 @@
         }
     }
     function eat(lastBody) {
+        var score = document.querySelector("#score");
         if (that.snake.body[0].left == parseInt(that.food.left) / parseInt(that.snake.width) && that.snake.body[0].top == parseInt(that.food.top) / parseInt(that.snake.height)) {
             that.snake.body.push(lastBody);
-            that.food.render(that.map);
+            that.food.render(that.map, that.snake);
+            that.score++;
+            score.innerHTML = "得分：" + that.score;
         }
     }
     document.onkeydown = function (event) {
