@@ -9,11 +9,19 @@
 </head>
 
 <body>
-    <div id="tig"></div>
+    <div id="tig">
+        <p id="score">得分：0</p>
+    </div>
     <div id="map"></div>
 </body>
 <script src="./JS/snake.js"></script>
 <script src="./JS/tools.js"></script>
 <script src="./JS/food.js"></script>
+<script src="./JS/game.js"></script>
+<script>
+    var map = document.querySelector("#map");
+    var Game = new Game(map);
+    Game.start();
+</script>
 
 </html>
