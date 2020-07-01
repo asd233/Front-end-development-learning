@@ -5,6 +5,11 @@
   background-color: rgb(255, 92, 146);
 }
 
+#score {
+  font-size: 18px;
+  line-height: 50px;
+}
+
 #map {
   position: relative;
 
