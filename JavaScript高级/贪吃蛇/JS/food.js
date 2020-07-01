@@ -10,7 +10,7 @@
         this.position = style.position || "absolute"
     }
 
-    Food.prototype.render = function (map) {
+    Food.prototype.render = function (map, snake) {
         //此方法将Food渲染到页面上
         if (arr.length !== 0) {
             arr[0].remove();
@@ -21,6 +21,14 @@
         arr.push(div);
         this.left = Tools.random(0, map.offsetWidth / parseInt(this.width) - 1) * parseInt(this.width) + "px";
         this.top = Tools.random(0, map.offsetHeight / parseInt(this.height) - 1) * parseInt(this.height) + "px";
+        for (let i = 0; i < snake.body.length; i++) {
+            if (snake.body[i].left == parseInt(this.left) / parseInt(this.width) && snake.body[i].top == parseInt(this.top) / parseInt(this.height)) {
+                this.left = Tools.random(0, map.offsetWidth / parseInt(this.width) - 1) * parseInt(this.width) + "px";
+                this.top = Tools.random(0, map.offsetHeight / parseInt(this.height) - 1) * parseInt(this.height) + "px";
+                i = 0;
+            }
+
+        }
         for (const key in this) {
             div.style[key] = this[key];
         }
