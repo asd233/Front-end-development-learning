@@ -33,6 +33,21 @@
                 }
                 console.log(getFactorial(100));
             })()
+            //斐波那契数列
+            ; (function () {
+                var arr = [1, 1];
+                var i = 0;
+                function fb(n) {
+                    i++
+                    if (i > n) {
+                        return arr;
+                    }
+                    arr.push(arr[arr.length - 2] + arr[arr.length - 1]);
+                    fb(n)
+                }
+                fb(10)
+                console.log(arr);
+            })()
     </script>
 </body>
 
