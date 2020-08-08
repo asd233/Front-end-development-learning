@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for="username">书名:<input type="text"></label><br>
+        <input type="button" value="提交" id="btn">
+    </form>
+</body>
+<script>
+    var btn = document.querySelector("#btn");
+    btn.onclick = function () {
+        var text = document.querySelector("input[type=text]");
+        var name = text.value;
+        var xhr = new XMLHttpRequest();
+        var url = "./get.php?name=" + name;
+        xhr.open("get", url, true);
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var date = xhr.responseText;
+                if (date == 1) {
+                    console.log("查无此书");
+                } else {
+                    console.log(JSON.parse(date));
+                }
+
+            }
+        }
+    }
+</script>
+
+</html>
