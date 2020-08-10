@@ -19,7 +19,7 @@
         var text = document.querySelector("input[type=text]");
         var name = text.value;
         var xhr = new XMLHttpRequest();
-        var url = "./get.php?name=" + name;
+        var url = "./Findbooktitle.php?name=" + name;
         xhr.open("get", url, true);
         xhr.send(null);
         xhr.onreadystatechange = function () {
@@ -28,7 +28,7 @@
                 if (date == 1) {
                     console.log("查无此书");
                 } else {
-                    console.log(JSON.parse(date));
+                    console.dir(JSON.parse(date));
                 }
 
             }
