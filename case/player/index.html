@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../jQuery3.4.1.js"></script>
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    #player {
+        position: relative;
+
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+
+        width: 850px;
+        height: 50vh;
+
+        background: #2b2c2f;
+    }
+
+    #videoWarp {
+        bottom: 0;
+
+        display: none;
+        justify-content: center;
+
+        width: 850px;
+    }
+
+    #player video {
+        width: 100%;
+    }
+
+    #player img {
+        position: absolute;
+    }
+
+    #control {
+        position: absolute;
+        bottom: 10px;
+
+        display: flex;
+        align-items: center;
+
+        box-sizing: border-box;
+        width: 98%;
+        min-width: 720px;
+        height: 40px;
+        padding: 0 15px 0 15px;
+
+        border-radius: 15px;
+        background: #424242ad;
+    }
+
+    #play {
+        width: 15px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    #play>div {
+        width: 0;
+        height: 0;
+
+        border-width: 10px 15px;
+        border-style: solid;
+        border-color: transparent transparent transparent rgb(255, 255, 255);
+    }
+
+    #progress {
+        flex-grow: 1;
+
+        height: 15px;
+
+        background-color: #949494da;
+    }
+
+    #progress>div {
+        width: 0%;
+        height: 100%;
+        background-color: #ffffffda;
+    }
+
+    #time {
+        line-height: 15px;
+        font-size: 10px;
+        right: 30px;
+        display: block;
+        width: 115px;
+        height: 15px;
+        text-align: center;
+        color: white;
+    }
+
+    #full {
+        right: 10px;
+
+        width: 20px;
+        height: 20px;
+    }
+
+    video::-webkit-media-controls {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <div id="player">
+        <div id="videoWarp">
+            <video id="video" src="./video/saber-Lily.mp4"></video>
+            <div id="control">
+                <div id="play">
+                    <div></div>
+                </div>
+                <div id="progress">
+                    <div></div>
+                </div>
+                <span id="time"><span id="currentTime">00:00:00</span>/<span id="videoDuration">00:00:00</span></span>
+                <div id="full"><img src="./images/full.png" alt="全屏" width="20px" height="20px"></div>
+            </div>
+        </div>
+        <img id="load" src="./images/loading.gif" alt="加载中...">
+    </div>
+</body>
+<script>
+    $(function () {
+        //全屏
+        $("#full").click(
+            () => {
+                if (!document.webkitIsFullScreen) {
+                    $("#videoWarp")[0].requestFullscreen();
+                    $("#video").css({
+                        width: "100%",
+                        height: "100%"
+                    })
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        )
+
+        //视频加载完成后显示视频
+        //视频加载完成后计算时间
+        $("#video")[0].oncanplay = function () {
+            $("#videoWarp")[0].style.display = "flex";
+            $("#load").css({
+                display: "none"
+            })
+            $("#videoDuration").text(duration(this.duration));
+            setInterval(() => {
+                if (!this.paused) {
+                    $("#currentTime").text(duration(this.currentTime));
+                    console.log(duration(this.currentTime));
+                    $("#progress>div").css("width", ($("#video")[0].currentTime / $("#video")[0].duration) * 100 + "%")
+                }
+                if (this.ended) {
+                    $("#progress>div").css("width", "100%");
+                    $("#play").css({
+                        background: "none",
+                        height: "20px"
+                    });
+                    $("#play>div").css("display", "block");
+                }
+            }, 50);
+        }
+        function duration(duration) {
+            let second = Math.floor(duration % 60);
+            if (second < 10) {
+                second = "0" + second;
+            }
+            let minute = Math.floor(duration % 3600 / 60);
+            if (minute < 10) {
+                minute = "0" + minute;
+            }
+            let hour = Math.floor(duration / 3600);
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+            let time = hour + ":" + minute + ":" + second;
+            return time;
+        }
+
+
+        //播放与暂停
+        $("#play").click(function () {
+            if ($("#video")[0].paused) {
+                $("#video")[0].play();
+                $("#play>div").css("display", "none");
+                $("#play").css({
+                    background: "white",
+                    height: "15px"
+                });
+            } else {
+                $("#video")[0].pause();
+                $("#play").css({
+                    background: "none",
+                    height: "20px"
+                });
+                $("#play>div").css("display", "block");
+            }
+        })
+    });
+
+    $("#progress").mousedown(
+        function (e) {
+            let mouseX = e.offsetX;
+            console.log(mouseX);
+            // let progressX = this.pageX;
+            $("#progress>div").css("width", mouseX / $("#progress>div").css("width") * 100 + "%");
+        }
+    )
+
+
+
+
+</script>
+
+</html>
