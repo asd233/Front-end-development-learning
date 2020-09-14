@@ -27,7 +27,6 @@
         justify-content: center;
 
         width: 850px;
-        height: 50vh;
 
         background: #2b2c2f;
     }
@@ -104,6 +103,7 @@
         height: 15px;
         text-align: center;
         color: white;
+        user-select: none;
     }
 
     #full {
@@ -164,7 +164,6 @@
             setInterval(() => {
                 if (!this.paused) {
                     $("#currentTime").text(duration(this.currentTime));
-                    console.log(duration(this.currentTime));
                     $("#progress>div").css("width", ($("#video")[0].currentTime / $("#video")[0].duration) * 100 + "%")
                 }
                 if (this.ended) {
@@ -213,19 +212,32 @@
                 $("#play>div").css("display", "block");
             }
         })
+        //鼠标控制播放进度
+        $("#progress").mousedown(
+            function (e) {
+                let mouseX = e.offsetX;
+                let value = mouseX / parseFloat($("#progress").css("width")) * 100 + "%";
+                $("#progress>div").css("width", value);
+                $("#video")[0].currentTime = $("#video")[0].duration * (mouseX / parseFloat($("#progress").css("width")));
+                $("#currentTime").text(duration($("#video")[0].currentTime));
+                $("#progress").mousemove(
+                    function (e) {
+                        let mouseX = e.offsetX;
+                        let value = mouseX / parseFloat($("#progress").css("width")) * 100 + "%";
+                        $("#progress>div").css("width", value);
+                        $("#video")[0].currentTime = $("#video")[0].duration * (mouseX / parseFloat($("#progress").css("width")));
+                        $("#currentTime").text(duration($("#video")[0].currentTime));
+                    }
+                )
+            }
+        )
+        //鼠标抬起时清除鼠标移动控制条事件
+        $("#progress").mouseup(
+            function (e) {
+                $("#progress").unbind("mousemove");
+            }
+        )
     });
-
-    $("#progress").mousedown(
-        function (e) {
-            let mouseX = e.offsetX;
-            console.log(mouseX);
-            // let progressX = this.pageX;
-            $("#progress>div").css("width", mouseX / $("#progress>div").css("width") * 100 + "%");
-        }
-    )
-
-
-
 
 </script>
 
