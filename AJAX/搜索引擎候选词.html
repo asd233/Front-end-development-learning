@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 1000px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <input type="text" id="text">
+    <div id="in"></div>
+</body>
+<script src="./jQuery3.4.1.js"></script>
+<script>
+    $("#text").on("keyup", function () {
+        var text = $("#text").val();
+        $.ajax({
+            type: "get",
+            url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+            data: { wd: text },
+            dataType: "jsonp",
+            jsonp: "cb",
+            success: function (data) {
+                var tag = "<ul>";
+                $.each(data.s, function (i, e) {
+                    tag += '<li>' + e + '</li>';
+                });
+
+                tag += "</ul>"
+                $("#in").html(tag);
+            }
+        }
+        )
+    })
+
+</script>
+<!-- https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1451,32301,32379,32359,31254,32348,32045,32394,32115,32507&wd=12&req=2&csor=2&pwd=1&cb=jQuery110206080843310825568_1597203227595&_=1597203227597 -->
+
+</html>
