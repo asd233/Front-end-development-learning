@@ -1,0 +1,35 @@
+@baseColor: #e23222;
+
+.wjs_head {
+    line-height: 50px;
+
+    height: 50px;
+
+    border: 1px solid #cccccc;
+}
+
+.row {
+    > div:first-child {
+        img {
+            display: none;
+        }
+
+        &:hover {
+            img {
+                display: block;
+            }
+        }
+    }
+
+    > div:nth-child(n+2) {
+        text-align: center;
+
+        border-left: 1px solid #cccccc;
+
+        > .btn-link {
+            text-decoration: none;
+
+            color: #000000;
+        }
+    }
+}
