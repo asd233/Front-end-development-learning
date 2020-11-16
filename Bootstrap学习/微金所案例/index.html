@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,8 @@
     <script src="../../../lib/node_modules/_jquery@3.5.1@jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="../../../lib/node_modules/_bootstrap@3.4.1@bootstrap/dist/css/bootstrap.css">
     <script src="../../../lib/node_modules/_bootstrap@3.4.1@bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./CSS/base.css">
+    <link rel="stylesheet" href="./CSS/wjs_index.css">
     <!--[if lt IE 9]>
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
@@ -15,7 +17,51 @@
 </head>
 
 <body>
+    <!-- 头部块 -->
+    <header class="wjs_head hidden-sm hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="javascript:;">
+                        <span class="wjs_icon wjs_icon_phone"></span>
+                        <span>手机微金所</span>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                        <img src="./img/code.jpg" alt="二维码">
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <span class="wjs_icon wjs_icon_tel"></span>
+                    <span> 4006-89-4006（服务时间：9:00~21:00）</span>
+                    <a href="javascript:;">联系在线客服</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="javascript:;">常见问题</a>
+                    <a href="javascript:;">财富登陆</a>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-danger">免费登陆</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-link">登陆</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 导航条 -->
+    <nav class="wjs_nav">
 
+    </nav>
+    <!-- 轮播图 -->
+    <div class="wjs_banner"></div>
+    <!-- 信息块 -->
+    <div class="info"></div>
+    <!-- 预约块 -->
+    <div class="wjs_reverse"></div>
+    <!-- 产品块 -->
+    <div class="wjs_product"></div>
+    <!-- 新闻块 -->
+    <div class="wjs_news"></div>
+    <!-- 合作伙伴 -->
+    <div class="wjs_partner"></div>
 </body>
 
 </html>
