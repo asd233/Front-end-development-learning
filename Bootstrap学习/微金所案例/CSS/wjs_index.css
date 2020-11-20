@@ -1,19 +1,39 @@
 .wjs_head {
   line-height: 50px;
   height: 50px;
-  border: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 }
-.row > div:first-child img {
+.wjs_head_row > div:first-child img {
+  position: absolute;
+  z-index: 99;
   display: none;
 }
-.row > div:first-child:hover img {
+.wjs_head_row > div:first-child:hover img {
   display: block;
 }
-.row > div:nth-child(n+2) {
+.wjs_head_row > div:nth-child(n+2) {
   text-align: center;
   border-left: 1px solid #cccccc;
 }
-.row > div:nth-child(n+2) > .btn-link {
+.wjs_head_row > div:nth-child(n+2) > .btn-link {
   text-decoration: none;
+  color: #000000;
+}
+.wjs_nav .navbar-nav li.active {
+  border-bottom: 3px solid #e23222;
+}
+.wjs_nav .navbar-nav li a {
+  line-height: 50px;
+}
+.wjs_nav .navbar-brand {
+  line-height: 50px;
+  height: 80px;
+}
+.wjs_nav .navbar-brand .wjs_icon_logo {
+  font-size: 40px;
+  color: #e23222;
+}
+.wjs_nav .navbar-brand .wjs_icon_text {
+  font-size: 40px;
   color: #000000;
 }

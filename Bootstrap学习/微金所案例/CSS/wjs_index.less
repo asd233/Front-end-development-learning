@@ -5,12 +5,15 @@
 
     height: 50px;
 
-    border: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
 }
 
-.row {
+.wjs_head_row {
     > div:first-child {
         img {
+            position: absolute;
+            z-index: 99;
+
             display: none;
         }
 
@@ -28,6 +31,38 @@
 
         > .btn-link {
             text-decoration: none;
+
+            color: #000000;
+        }
+    }
+}
+
+.wjs_nav {
+    .navbar-nav {
+        li.active {
+            border-bottom: 3px solid @baseColor;
+        }
+
+        li {
+            a {
+                line-height: 50px;
+            }
+        }
+    }
+
+    .navbar-brand {
+        line-height: 50px;
+
+        height: 80px;
+
+        .wjs_icon_logo {
+            font-size: 40px;
+
+            color: @baseColor;
+        }
+
+        .wjs_icon_text {
+            font-size: 40px;
 
             color: #000000;
         }
