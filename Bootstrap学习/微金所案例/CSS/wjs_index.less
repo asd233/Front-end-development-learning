@@ -38,6 +38,8 @@
 }
 
 .wjs_nav {
+    margin-bottom: 0;
+
     .navbar-nav {
         li.active {
             border-bottom: 3px solid @baseColor;
@@ -66,5 +68,68 @@
 
             color: #000000;
         }
+    }
+}
+
+.mobileImg {
+    > img {
+        width: 100%;
+    }
+}
+
+.pcImg {
+    display: block;
+
+    width: 100%;
+    height: 410px;
+
+    background-position: center center;
+    background-size: cover;
+}
+
+.media {
+    > span {
+        font-size: 30px;
+        line-height: 60px;
+
+        float: left;
+
+        margin-right: 10px;
+    }
+
+    h4 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    &:hover {
+        color: @baseColor;
+    }
+}
+
+.information {
+    height: 60px;
+    margin-top: 20px;
+}
+
+.wjs_reverse {
+    line-height: 60px;
+
+    height: 60px;
+    margin-top: 30px;
+
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+
+    a:hover {
+        color: @baseColor;
+    }
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
     }
 }

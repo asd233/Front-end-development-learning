@@ -19,6 +19,9 @@
   text-decoration: none;
   color: #000000;
 }
+.wjs_nav {
+  margin-bottom: 0;
+}
 .wjs_nav .navbar-nav li.active {
   border-bottom: 3px solid #e23222;
 }
@@ -36,4 +39,47 @@
 .wjs_nav .navbar-brand .wjs_icon_text {
   font-size: 40px;
   color: #000000;
+}
+.mobileImg > img {
+  width: 100%;
+}
+.pcImg {
+  display: block;
+  width: 100%;
+  height: 410px;
+  background-position: center center;
+  background-size: cover;
+}
+.media > span {
+  font-size: 30px;
+  line-height: 60px;
+  float: left;
+  margin-right: 10px;
+}
+.media h4 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.media:hover {
+  color: #e23222;
+}
+.information {
+  height: 60px;
+  margin-top: 20px;
+}
+.wjs_reverse {
+  line-height: 60px;
+  height: 60px;
+  margin-top: 30px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+.wjs_reverse a:hover {
+  color: #e23222;
+}
+.wjs_reverse .left {
+  float: left;
+}
+.wjs_reverse .right {
+  float: right;
 }
