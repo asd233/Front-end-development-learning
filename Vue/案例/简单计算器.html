@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/node_modules/_vue@2.6.12@vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="number" v-model="n1">
+        <select v-model="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" v-model="n2">
+        <input type="button" value="=" @click="js">
+        <input type="number" v-model="val">
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                n1: 0,
+                n2: 0,
+                val: 0,
+                opt: "+"
+            },
+            methods: {
+                js() {
+                    let n1 = parseInt(this.n1);
+                    let n2 = parseInt(this.n2);
+                    switch (this.opt) {
+                        case "+":
+                            this.val = n1 + n2;
+                            break;
+                        case "-":
+                            this.val = n1 - n2;
+                            break;
+                        case "*":
+                            this.val = n1 * n2;
+                            break;
+                        case "/":
+                            this.val = n1 / n2;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
