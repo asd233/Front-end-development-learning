@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../lib/node_modules/_vue@2.6.12@vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="开始" @click="lang">
+        <input type="button" value="结束" @click="stop">
+        <h1>{{msg}}</h1>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "菜鸡始终慢我一步!",
+            val: null
+        },
+        methods: {
+            lang() {
+                this.val = setInterval(() => {
+                    var start = this.msg.substring(0, 1);
+                    var end = this.msg.substring(1);
+                    this.msg = end + start;
+                }, 400);
+            },
+            stop() {
+                clearInterval(this.val)
+            }
+        }
+    })
+
+</script>
+
+</html>
