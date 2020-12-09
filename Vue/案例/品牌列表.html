@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../../lib/node_modules/_vue@2.6.12@vue/dist/vue.min.js"></script>
+    <link rel="stylesheet" href="../../../lib/node_modules/_bootstrap@3.4.1@bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div id="app">
+        <table class="table table-bordered table-str table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>品牌</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in list" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.cTime}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <a href="javascript:void(0)" @click="delData">
+                            删除
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                list: [
+                    { id: 1, cTime: new Date(), name: "宝马" },
+                    { id: 2, cTime: new Date(), name: "奔驰" },
+                    { id: 3, cTime: new Date(), name: "大众" },
+                ]
+            },
+            methods: {
+                delData: function () {
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
