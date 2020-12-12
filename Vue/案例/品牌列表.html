@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta brand="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../../../lib/node_modules/_vue@2.6.12@vue/dist/vue.min.js"></script>
     <link rel="stylesheet" href="../../../lib/node_modules/_bootstrap@3.4.1@bootstrap/dist/css/bootstrap.css">
@@ -11,6 +11,22 @@
 
 <body>
     <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">添加品牌</div>
+            <div class="panel-body form-inline">
+                <div class="form-group">
+                    <label for="brandId">ID</label>
+                    <input type="text" class="form-control" v-model="idData" id="brandId" placeholder="ID">
+                </div>
+                <div class="form-group">
+                    <label for="brand">品牌</label>
+                    <input type="text" class="form-control" v-model="brandData" id="brand" placeholder="品牌名">
+                </div>
+                <button type="submit" class="btn btn-default" @click="addData">添加</button>
+                <button type="submit" class="btn btn-default" @click="selectData">查找</button>
+                <button type="submit" class="btn btn-default" @click="reset">复位</button>
+            </div>
+        </div>
         <table class="table table-bordered table-str table-hover">
             <thead>
                 <tr>
@@ -21,12 +37,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in list" :key="item.id">
+                <tr v-for="item in list" :key="item.id" v-show="item.show">
                     <td>{{item.id}}</td>
+                    <td>{{item.brand}}</td>
                     <td>{{item.cTime}}</td>
-                    <td>{{item.name}}</td>
                     <td>
-                        <a href="javascript:void(0)" @click="delData">
+                        <a href="javascript:void(0)" @click="delData(item.id)">
                             删除
                         </a>
                     </td>
@@ -38,15 +54,63 @@
         var vm = new Vue({
             el: "#app",
             data: {
+                idData: "",
+                brandData: "",
                 list: [
-                    { id: 1, cTime: new Date(), name: "宝马" },
-                    { id: 2, cTime: new Date(), name: "奔驰" },
-                    { id: 3, cTime: new Date(), name: "大众" },
+                    { id: 1, cTime: new Date(), brand: "宝马", show: true },
+                    { id: 2, cTime: new Date(), brand: "奔驰", show: true },
+                    { id: 3, cTime: new Date(), brand: "大众", show: true },
                 ]
             },
             methods: {
-                delData: function () {
+                //新增数据
+                addData: function () {
+                    if (this.idData && this.brandData) {
+                        let newItem = { id: this.idData, cTime: new Date(), brand: this.brandData, show: "true" };
+                        this.list.push(newItem);
+                        this.idData = "";
+                        this.brandData = "";
+                    } else {
+                        alert('您的输入有误，请检查后重新输入');
+                    }
+                },
+                //删除数据
+                delData: function (itemId) {
+                    for (let index = 0; index < this.list.length; index++) {
+                        if (this.list[index].id == itemId) {
+                            this.list.splice(index, 1);
+                        }
 
+                    }
+                },
+                //查找数据
+                selectData: function () {
+                    //判断两个数据不能同时为空
+                    if (this.idData || this.brandData) {
+                        if (this.idData && this.brandData) {
+                            //判断两个数据的情况
+                            for (let index = 0; index < this.list.length; index++) {
+                                if (this.list[index].id != this.idData || this.list[index].brand != this.brandData) {
+                                    this.list[index].show = false;
+                                }
+                            }
+                        } else {
+                            //判断单独任意一个数据的情况
+                            for (let index = 0; index < this.list.length; index++) {
+                                if (this.list[index].id != this.idData && this.list[index].brand != this.brandData) {
+                                    this.list[index].show = false;
+                                }
+                            }
+                        }
+                    }
+                },
+                reset: function () {
+                    //复位，显示所有数据
+                    for (let index = 0; index < this.list.length; index++) {
+                        if (this.list[index].show === false) {
+                            this.list[index].show = true;
+                        }
+                    }
                 }
             }
         })
