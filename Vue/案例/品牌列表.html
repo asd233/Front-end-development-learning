@@ -65,11 +65,24 @@
             methods: {
                 //新增数据
                 addData: function () {
+                    let state = true;
                     if (this.idData && this.brandData) {
-                        let newItem = { id: this.idData, cTime: new Date(), brand: this.brandData, show: "true" };
-                        this.list.push(newItem);
-                        this.idData = "";
-                        this.brandData = "";
+                        for (let index = 0; index < this.list.length; index++) {
+                            if (this.idData == this.list[index].id) {
+                                state = false;
+                                break;
+                            }
+
+                        }
+                        if (state) {
+                            let newItem = { id: this.idData, cTime: new Date(), brand: this.brandData, show: "true" };
+                            this.list.push(newItem);
+                            this.idData = "";
+                            this.brandData = "";
+                        } else {
+                            alert("您输入的ID与已有数据的ID重复，请检查后重新输入")
+                        }
+
                     } else {
                         alert('您的输入有误，请检查后重新输入');
                     }
