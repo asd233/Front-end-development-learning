@@ -16,7 +16,7 @@
             <div class="panel-body form-inline">
                 <div class="form-group">
                     <label for="brandId">ID</label>
-                    <input type="text" class="form-control" v-model="idData" id="brandId" placeholder="ID">
+                    <input type="text" class="form-control" v-model="idData" id="brandId" placeholder="ID" v-focus>
                 </div>
                 <div class="form-group">
                     <label for="brand">品牌</label>
@@ -62,6 +62,13 @@
                     { id: 2, cTime: new Date(), brand: "奔驰", show: true },
                     { id: 3, cTime: new Date(), brand: "大众", show: true },
                 ]
+            },
+            directives: {
+                "focus": {
+                    inserted: function (el) {
+                        el.focus();
+                    }
+                }
             },
             methods: {
                 //新增数据
